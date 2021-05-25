@@ -4,6 +4,9 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
+// 导入基础样式
+import '@/assets/css/base.css'
+
 Vue.config.productionTip = false
 
 new Vue({
