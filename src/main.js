@@ -7,6 +7,9 @@ import store from './store'
 // 导入基础样式
 import '@/assets/css/base.css'
 
+// router contrl
+import  './permission'
+
 Vue.config.productionTip = false
 
 new Vue({
