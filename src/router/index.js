@@ -1,21 +1,16 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Router from 'vue-router'
+import  routes from './routers'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  }
-]
 
-const router = new VueRouter({
+export default new Router({
+  // 采用 history 模式,没有难看的 '#'
   mode: 'history',
-  base: process.env.BASE_URL,
+  // 在history模式下,通过返回{x:Number,y:Number}控制跳转后新界面的滚动位置
+  scrollBehavior: () => ({ y: 0 }),
+  // 挂载路由
   routes
 })
 
-export default router
