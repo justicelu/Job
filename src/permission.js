@@ -13,7 +13,6 @@ router.beforeEach((to, from, next) => {
     // 之后在这里判断token并进行路由跳转
     if (Object.is(to.name, "login")) {
         console.log("直接前往登录页,放行");
-
         document.title = to.meta.title;
         next();
         return;

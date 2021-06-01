@@ -31,7 +31,6 @@ export default {
     };
   },
   created() {
-    this.setToken();
     this.getToken();
   },
   methods: {
@@ -45,7 +44,7 @@ export default {
     onSubmit() {
       if (this.form.name === "root" && this.form.password === "123456") {
         this.message1("success", "登陆成功", 1000);
-        localStorage.setItem("login", true);
+        this.setToken();
         this.$router.push("/home");
       } else {
         this.message1("error", "账号密码输入错误!", 1000);

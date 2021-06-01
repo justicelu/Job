@@ -169,7 +169,7 @@ export default {
     handleClick(val) {
       console.log(val);
     },
-    getInfo() {
+    getInfo1() {
       this.tableData = [
         {
           title: "title",
@@ -184,7 +184,7 @@ export default {
       ];
       this.total = 100;
     },
-    async getInfo1(num) {
+    async getInfo(num) {
       this.loading = true;
       let obj = {
         currentPage: 1,
