@@ -75,6 +75,7 @@
     <Detail
       :showDetail="showDetail"
       :info="detailInfo"
+      :list="detailJobList"
       @closeDetail="closeDetail"
     ></Detail>
     <Edit
@@ -83,7 +84,11 @@
       @closeEdit="closeEdit"
     ></Edit>
     <AddInfo :showAddInfo="showAddInfo" @closeAddInfo="closeAddInfo"></AddInfo>
-    <do-job :showJobHandle="showJobHandle" @closeJob="closeJob"></do-job>
+    <do-job
+      :showJobHandle="showJobHandle"
+      @closeJob="closeJob"
+      :id="infoId"
+    ></do-job>
   </div>
 </template>
 
@@ -100,6 +105,7 @@ export default {
   components: { Detail, AddInfo, Edit, doJob },
   data() {
     return {
+      infoId: "",
       showJobHandle: false,
       // for edit
       showEditInfo: false,
@@ -107,6 +113,7 @@ export default {
       // for addInfo
       showAddInfo: false,
       // for detail
+      detailJobList: [],
       detailInfo: {},
       showDetail: false,
       total: 0,
@@ -120,11 +127,12 @@ export default {
   },
   methods: {
     closeJob() {
+      this.infoId = null;
       this.showJobHandle = false;
     },
     // for handle job
     doshowJobSet(val) {
-      let id = val.id;
+      this.infoId = val.id;
       this.showJobHandle = true;
     },
     // for edit
@@ -149,8 +157,15 @@ export default {
       this.detailInfo = {};
       this.showDetail = false;
     },
+    async getJobList(id) {
+      let res = await getAction(`/recruittitle/get/${id}`);
+      console.log(res);
+      this.detailJobList = res.data;
+    },
     doshowDetail(info) {
       this.detailInfo = info;
+      console.log(info);
+      this.getJobList(info.id);
       this.showDetail = true;
     },
 

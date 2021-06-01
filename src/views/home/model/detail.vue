@@ -91,7 +91,7 @@
         style="margin-bottom: 20px"
       >
       </el-alert>
-      <el-table :data="jobList" style="width: 100%">
+      <el-table :data="list" style="width: 100%">
         <el-table-column prop="recruitPos" label="招聘岗位" width="180">
         </el-table-column>
         <el-table-column prop="demandPos" label="需求专业" width="180">
@@ -100,19 +100,6 @@
         <el-table-column prop="person" label="需求人数"> </el-table-column>
         <el-table-column prop="addAt" label="发布时间"> </el-table-column>
       </el-table>
-      <!-- <el-card v-for="item in jobList" :key="item.recruitPos">
-        <el-row>
-          <el-col :span="8"></el-col>
-          <el-col :span="8"></el-col>
-          <el-col :span="8"></el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="8"></el-col>
-          <el-col :span="8"></el-col>
-          <el-col :span="8"></el-col>
-        </el-row>
-        <el-alert title="招聘岗位" type="info" :closable="false"> </el-alert>
-      </el-card> -->
       <span slot="footer" class="dialog-footer">
         <!-- <el-button @click="dialogVisible = false">取 消</el-button> -->
         <el-button type="primary" @click="handleClose">确 定</el-button>
@@ -133,6 +120,11 @@ export default {
     info: {
       type: Object,
       required: true,
+    },
+    list: {
+      type: Array,
+      required: true,
+      default: [],
     },
   },
   components: {},
