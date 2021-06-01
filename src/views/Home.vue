@@ -40,4 +40,7 @@ export default {
   height: 100%;
   background-color: rgb(255, 255, 255);
 }
+.el-main {
+  overflow: hidden;
+}
 </style>

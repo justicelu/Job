@@ -29,8 +29,15 @@
       </el-table-column>
       <!-- <el-table-column prop="zip" label="发布时间" width="120">
       </el-table-column> -->
-      <el-table-column fixed="right" label="操作" width="220">
+      <el-table-column fixed="right" label="操作" width="275">
         <template slot-scope="scope">
+          <el-button
+            @click="doshowJobSet(scope.row)"
+            type="primary"
+            plain
+            size="small"
+            >岗位</el-button
+          >
           <el-button
             @click="doshowDetail(scope.row)"
             type="primary"
@@ -56,7 +63,7 @@
       </el-table-column>
     </el-table>
     <el-row :gutter="20" style="margin-top: 20px">
-      <el-col :span="6" :offset="18">
+      <el-col :span="6" :offset="16">
         <el-pagination
           small
           layout="prev, pager, next"
@@ -76,6 +83,7 @@
       @closeEdit="closeEdit"
     ></Edit>
     <AddInfo :showAddInfo="showAddInfo" @closeAddInfo="closeAddInfo"></AddInfo>
+    <do-job :showJobHandle="showJobHandle" @closeJob="closeJob"></do-job>
   </div>
 </template>
 
@@ -84,12 +92,15 @@ import { getAction, postAction, deleteAction } from "@/api/api";
 import Detail from "./model/detail";
 import AddInfo from "./model/addInfo";
 import Edit from "./model/editInfo";
+import doJob from "./model/jobHandel";
+
 export default {
   name: "tablelist",
   props: {},
-  components: { Detail, AddInfo, Edit },
+  components: { Detail, AddInfo, Edit, doJob },
   data() {
     return {
+      showJobHandle: false,
       // for edit
       showEditInfo: false,
       editInfo: {},
@@ -108,6 +119,14 @@ export default {
     this.getInfo();
   },
   methods: {
+    closeJob() {
+      this.showJobHandle = false;
+    },
+    // for handle job
+    doshowJobSet(val) {
+      let id = val.id;
+      this.showJobHandle = true;
+    },
     // for edit
     doeditInfo(val) {
       this.editInfo = val;
@@ -150,7 +169,22 @@ export default {
     handleClick(val) {
       console.log(val);
     },
-    async getInfo(num) {
+    getInfo() {
+      this.tableData = [
+        {
+          title: "title",
+          companyName: "companyName",
+          companyDec: "companyDec",
+          recruitDate: "recruitDate",
+          addr: "addr",
+          email: "email",
+          contractPerson: "contractPerson",
+          mobile: "mobile",
+        },
+      ];
+      this.total = 100;
+    },
+    async getInfo1(num) {
       this.loading = true;
       let obj = {
         currentPage: 1,
