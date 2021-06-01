@@ -11,7 +11,6 @@ let token = localStorage.getItem("token");
 router.beforeEach((to, from, next) => {
     NProgress.start(); // start progress bar
     // 之后在这里判断token并进行路由跳转
-    console.log(to);
     if (Object.is(to.name, "login")) {
         console.log("直接前往登录页,放行");
 

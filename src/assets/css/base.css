@@ -9,7 +9,7 @@ body,
     width: 100%;
     height: 100%;
     /* background-color: #f78aab; */
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 li {
