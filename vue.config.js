@@ -1,7 +1,7 @@
 const path = require("path");
 const ENV = process.env.NODE_ENV;
 module.exports = {
- publicPath: ENV === "development" ? "" : "/dist/", # 关键代码
+    publicPath: ENV === "development" ? "" : "/dist/",
     pwa: {
         iconPaths: {
             favicon32: "favicon.ico",
