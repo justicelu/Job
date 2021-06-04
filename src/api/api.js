@@ -1,6 +1,6 @@
 import http from "./request";
 
-export function httpAction(methods, url, params, data, headers) {
+export function httpAction(method, url, params, data, headers) {
     return http({
         url: url,
         method,

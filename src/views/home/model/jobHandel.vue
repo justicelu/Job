@@ -36,13 +36,26 @@
                 @click="doeditJob(scope.row)"
                 >编辑</el-button
               >
-              <el-button
+              <el-popconfirm
+                style="margin-left: 10px"
+                confirm-button-text="删除"
+                cancel-button-text="取消"
+                icon="el-icon-info"
+                icon-color="red"
+                title="确定删除该招聘信息吗？"
+                @confirm="deleteJob(scope.row)"
+              >
+                <el-button slot="reference" type="danger" plain size="small"
+                  >删除</el-button
+                >
+              </el-popconfirm>
+              <!-- <el-button
                 type="danger"
                 plain
                 size="small"
-                @click="deleteJob(scope.row)"
+                @click=""
                 >删除</el-button
-              >
+              > -->
             </template>
           </el-table-column>
         </el-table>
@@ -139,11 +152,11 @@ export default {
           if (this.doTitle === "新增") {
             this.form.id = this.id;
             url = "/recruittitle/add";
-            method = "POST";
+            method = "post";
           } else {
             this.form.titleid = this.id;
             url = "/recruittitle/update";
-            method = "PUT";
+            method = "put";
           }
           console.log("岗位信息对象为: ", this.form);
           let res = await httpAction(method, url, {}, this.form);
@@ -166,11 +179,14 @@ export default {
       this.form = {};
     },
     async getJobList() {
+      this.loading = true;
       let res = await getAction(`/recruittitle/get/${this.id}`);
       console.log(res);
       this.tableData = res.data;
+      this.loading = false;
     },
     addJob() {
+      this.form = {};
       this.doTitle = "新增";
       this.showAdd = true;
     },
