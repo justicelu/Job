@@ -52,13 +52,19 @@
             @click="doeditInfo(scope.row)"
             >编辑</el-button
           >
-          <el-button
-            type="danger"
-            plain
-            size="small"
-            @click="deleteInfo(scope.row)"
-            >删除</el-button
+          <el-popconfirm
+            style="margin-left: 10px"
+            confirm-button-text="删除"
+            cancel-button-text="取消"
+            icon="el-icon-info"
+            icon-color="red"
+            title="确定删除该招聘信息吗？"
+            @confirm="deleteInfo(scope.row)"
           >
+            <el-button slot="reference" type="danger" plain size="small"
+              >删除</el-button
+            >
+          </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>

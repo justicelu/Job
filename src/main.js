@@ -10,8 +10,9 @@ import "@/assets/css/base.css";
 // import the axios or other that the axios you already configed
 import axios from "./api/request";
 
-import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
+import ElementUI from "element-ui";
+
 Vue.use(ElementUI);
 
 // router contrl

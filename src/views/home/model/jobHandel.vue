@@ -145,7 +145,7 @@ export default {
             url = "/recruittitle/update";
             method = "PUT";
           }
-
+          console.log("岗位信息对象为: ", this.form);
           let res = await httpAction(method, url, {}, this.form);
           console.log(res);
           if (res.code == 201) {
