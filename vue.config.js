@@ -1,4 +1,7 @@
+const path = require("path");
+
 module.exports = {
+    publicPath: "/dist/",
     pwa: {
         iconPaths: {
             favicon32: "favicon.ico",
